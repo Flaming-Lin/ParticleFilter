@@ -1,6 +1,7 @@
 package com.palmaplus.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @Author Flaming
@@ -8,10 +9,16 @@ import lombok.Data;
  * @date 2018/10/10 16:16
  */
 @Data
-public class Particle implements Comparable<Particle>{
+@NoArgsConstructor
+public class Particle implements Comparable<Particle>, Cloneable{
 
     private double value;
     private double weight;
+
+    public Particle(Particle particle){
+        this.value = particle.getValue();
+        this.weight = particle.getWeight();
+    }
 
     @Override
     public int compareTo(Particle o) {
@@ -25,4 +32,8 @@ public class Particle implements Comparable<Particle>{
         }
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
